@@ -1,5 +1,5 @@
 # TIFCMamba
-### enviorment
+## 1.enviorment
 conda create -n TIFCMamba python=3.10
 
 conda activate TIFCMamba
@@ -18,3 +18,7 @@ import nltk
 nltk.download('punkt')
 
 nltk.download('averaged_perceptron_tagger')
+## 2.dataset
+cc3m: https://github.com/rom1504/img2dataset/blob/main/dataset_examples/cc3m.md
+  
+
