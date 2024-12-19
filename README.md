@@ -9,6 +9,6 @@ pip install -r requirements.txt
 python -m mim install mmcv-full==1.6.2 mmsegmentation==0.27.0
 
 python
->>> import nltk
->>> nltk.download('punkt')
->>> nltk.download('averaged_perceptron_tagger')
+import nltk
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
