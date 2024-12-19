@@ -21,7 +21,21 @@ nltk.download('punkt')
 
 nltk.download('averaged_perceptron_tagger')
 ## 2.dataset
-cc3m: https://github.com/rom1504/img2dataset/blob/main/dataset_examples/cc3m.md
+Please download the training split annotation file from Conceptual Caption 3M and name it as gcc3m.tsv. Conceptual Caption 3M：https://ai.google.com/research/ConceptualCaptions/download
+
+Then run img2dataset to download the image text pairs and save them in the webdataset format.
+
+sed -i '1s/^/caption\turl\n/' gcc3m.tsv
+
+img2dataset --url_list gcc3m.tsv --input_format "tsv" \
+            --url_col "url" --caption_col "caption" --output_format webdataset \
+            --output_folder data/gcc3m \
+            --processes_count 16 --thread_count 64 \
+            --image_size 512 --resize_mode keep_ratio --resize_only_if_bigger True \
+            --enable_wandb True --save_metadata False --oom_shard_count 6
+            
+rename -d 's/^/gcc-train-/' data/gcc3m/*
+
 
 cvc-clinicDB:https://storage.googleapis.com/kaggle-data-sets/930614/1574219/bundle/archive.zip?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=gcp-kaggle-com%40kaggle-161607.iam.gserviceaccount.com%2F20241213%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20241213T015922Z&X-Goog-Expires=259200&X-Goog-SignedHeaders=host&X-Goog-Signature=13985afd566ead2d1059aeeeec031912ba3fb9fa4bf580dd9500c065c59f5c9c8c2cf737e1303bd861112697720d4d26bc7a991f796b1989006a6b1f155bf734c71be250034b13650dfe483959e6b037a85f3cee6b942930793df6db5223010a8a2937c839142f47271e939913bbe6e9a8f76610a34db457aaed68bb7fc3aa7eacaeb00efdb326ad42642477af8990c8adf710ec1d3380c512ad77cf0e3ff129d2df9564aee9d545f736410db514419b1a6d5e8122b769f0435666aed2fbdd7cd4d5bd6f2d781af749780995610aa7828ab1464895a95733f1bb208ab08fe6e73d4475c7c695a0815373444bd71922c16e53adb09f3fbeb64f9b334c6dc35b3d
 
